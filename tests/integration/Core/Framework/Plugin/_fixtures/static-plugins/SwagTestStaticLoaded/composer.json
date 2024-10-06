@@ -1,5 +1,5 @@
 {
-    "name": "swag/composer-loaded",
+    "name": "swag/static-loaded",
     "description": "Test description",
     "version": "v1.0.1",
     "type": "shopware-platform-plugin",
@@ -18,7 +18,7 @@
         "shopware/core": ">=6.0"
     },
     "extra": {
-        "shopware-plugin-class": "SwagTestStaticLoaded",
+        "shopware-plugin-class": "SwagTestStaticLoaded\\SwagTestStaticLoaded",
         "plugin-icon": "src/Resources/public/plugin.png",
         "copyright": "(c) by shopware AG",
         "label": {
@@ -41,7 +41,7 @@
     },
     "autoload": {
         "psr-4": {
-           "SwagTestComposerLoaded\\": "src"
+           "SwagTestStaticLoaded\\": "src"
         }
     }
 }

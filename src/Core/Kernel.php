@@ -287,6 +287,7 @@ class Kernel extends HttpKernel
         }
 
         $pluginDir = $this->pluginLoader->getPluginDir($this->getProjectDir());
+        $staticPluginDir = $this->pluginLoader->getStaticPluginDir($this->getProjectDir());
 
         $coreDir = \dirname((string) (new \ReflectionClass(self::class))->getFileName());
 
@@ -298,6 +299,7 @@ class Kernel extends HttpKernel
                 'kernel.shopware_version_revision' => $this->shopwareVersionRevision,
                 'kernel.shopware_core_dir' => $coreDir,
                 'kernel.plugin_dir' => $pluginDir,
+                'kernel.static_plugin_dir' => $staticPluginDir,
                 'kernel.app_dir' => rtrim($this->getProjectDir(), '/') . '/custom/apps',
                 'kernel.active_plugins' => $activePluginMeta,
                 'kernel.plugin_infos' => $this->pluginLoader->getPluginInfos(),

@@ -22,6 +22,7 @@ class PluginFinderTest extends TestCase
         $errors = new ExceptionCollection();
         (new PluginFinder(new PackageProvider()))->findPlugins(
             __DIR__,
+            __DIR__,
             __DIR__ . '/../../../../../..',
             $errors,
             new NullIO()
@@ -33,6 +34,7 @@ class PluginFinderTest extends TestCase
     public function testLocalLoadsTheComposerJsonContents(): void
     {
         $plugins = (new PluginFinder(new PackageProvider()))->findPlugins(
+            __DIR__ . '/_fixture/LocallyInstalledPlugins',
             __DIR__ . '/_fixture/LocallyInstalledPlugins',
             __DIR__ . '/_fixture/ComposerProject',
             new ExceptionCollection(),
@@ -52,6 +54,7 @@ class PluginFinderTest extends TestCase
     {
         $plugins = (new PluginFinder(new PackageProvider()))->findPlugins(
             __DIR__ . '/_fixture/LocallyInstalledPlugins',
+            __DIR__ . '/_fixture/LocallyInstalledPlugins',
             __DIR__ . '/_fixture/ComposerProject',
             new ExceptionCollection(),
             new NullIO()
@@ -68,6 +71,7 @@ class PluginFinderTest extends TestCase
     public function testComposerPackageFromPluginIsUsedIfNoLocalInstalledVersionExists(): void
     {
         $plugins = (new PluginFinder(new PackageProvider()))->findPlugins(
+            __DIR__ . '/_fixture/LocallyInstalledPlugins',
             __DIR__ . '/_fixture/LocallyInstalledPlugins',
             __DIR__ . '/_fixture/ComposerProject',
             new ExceptionCollection(),

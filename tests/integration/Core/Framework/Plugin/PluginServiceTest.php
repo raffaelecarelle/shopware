@@ -56,6 +56,7 @@ class PluginServiceTest extends TestCase
         $this->pluginRepo = $this->getContainer()->get('plugin.repository');
         $this->pluginService = $this->createPluginService(
             $this->fixturePath . 'plugins/',
+            $this->fixturePath . 'static-plugins/',
             $this->getContainer()->getParameter('kernel.project_dir'),
             $this->pluginRepo,
             $this->getContainer()->get('language.repository'),
@@ -81,6 +82,7 @@ class PluginServiceTest extends TestCase
     {
         $this->pluginService = $this->createPluginService(
             $this->fixturePath . 'plugins',
+            $this->fixturePath . 'static-plugins/',
             $this->fixturePath . 'root-plugin',
             $this->pluginRepo,
             $this->getContainer()->get('language.repository'),

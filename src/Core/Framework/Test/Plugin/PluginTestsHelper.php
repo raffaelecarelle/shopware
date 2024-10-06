@@ -17,12 +17,14 @@ trait PluginTestsHelper
 {
     protected function createPluginService(
         string $pluginDir,
+        string $staticPluginDir,
         string $projectDir,
         EntityRepository $pluginRepo,
         EntityRepository $languageRepo,
         PluginFinder $pluginFinder
     ): PluginService {
         return new PluginService(
+            $staticPluginDir,
             $pluginDir,
             $projectDir,
             $pluginRepo,

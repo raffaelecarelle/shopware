@@ -28,6 +28,8 @@ abstract class KernelPluginLoader extends Bundle
 
     private readonly string $pluginDir;
 
+    private readonly string $staticPluginDir;
+
     private bool $initialized = false;
 
     /**
@@ -35,9 +37,11 @@ abstract class KernelPluginLoader extends Bundle
      */
     public function __construct(
         private readonly ClassLoader $classLoader,
-        ?string $pluginDir = null
+        ?string $pluginDir = null,
+        ?string $staticPluginDir = null
     ) {
         $this->pluginDir = $pluginDir ?? 'custom/plugins';
+        $this->staticPluginDir = $pluginDir ?? 'custom/static-plugins';
         $this->pluginInstances = new KernelPluginCollection();
     }
 
@@ -49,6 +53,16 @@ abstract class KernelPluginLoader extends Bundle
         }
 
         return $projectDir . '/' . $this->pluginDir;
+    }
+
+    final public function getStaticPluginDir(string $projectDir): string
+    {
+        // absolute path
+        if (mb_strpos($this->pluginDir, '/') === 0) {
+            return $this->staticPluginDir;
+        }
+
+        return $projectDir . '/' . $this->staticPluginDir;
     }
 
     /**

@@ -48,6 +48,7 @@ class PluginServiceTest extends TestCase
         $pluginService = new PluginService(
             __DIR__,
             __DIR__,
+            __DIR__,
             $pluginRepo,
             $this->getLanguageRepository(),
             $pluginFinder,
@@ -94,6 +95,7 @@ class PluginServiceTest extends TestCase
         /** @var StaticEntityRepository<PluginCollection> $pluginRepo */
         $pluginRepo = new StaticEntityRepository([new PluginCollection()]);
         $pluginService = new PluginService(
+            __DIR__,
             __DIR__,
             __DIR__,
             $pluginRepo,

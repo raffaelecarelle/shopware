@@ -32,11 +32,12 @@ class PluginFinder
      */
     public function findPlugins(
         string $pluginDir,
+        string $staticPluginDir,
         string $projectDir,
         ExceptionCollection $errors,
         IOInterface $composerIO
     ): array {
-        $plugins = $this->loadLocalPlugins($pluginDir, $composerIO, $errors);
+        $plugins = $this->loadLocalPlugins($pluginDir, $staticPluginDir, $composerIO, $errors);
 
         return $this->enrichWithVendorPlugins($plugins, $projectDir, $composerIO, $errors);
     }
@@ -44,8 +45,12 @@ class PluginFinder
     /**
      * @return array<string, PluginFromFileSystemStruct>
      */
-    private function loadLocalPlugins(string $pluginDir, IOInterface $composerIO, ExceptionCollection $errors): array
-    {
+    private function loadLocalPlugins(
+        string $pluginDir,
+        string $staticPluginDir,
+        IOInterface $composerIO,
+        ExceptionCollection $errors
+    ): array {
         $plugins = [];
 
         try {
@@ -53,6 +58,7 @@ class PluginFinder
                 ->directories()
                 ->depth(0)
                 ->in($pluginDir)
+                ->in($staticPluginDir)
                 ->sortByName()
                 ->getIterator();
 

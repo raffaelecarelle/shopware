@@ -34,6 +34,7 @@ class PluginService
      * @param EntityRepository<LanguageCollection> $languageRepo
      */
     public function __construct(
+        private readonly string $staticPluginDir,
         private readonly string $pluginDir,
         private readonly string $projectDir,
         private readonly EntityRepository $pluginRepo,
@@ -46,7 +47,13 @@ class PluginService
     public function refreshPlugins(Context $shopwareContext, IOInterface $composerIO): ExceptionCollection
     {
         $errors = new ExceptionCollection();
-        $pluginsFromFileSystem = $this->pluginFinder->findPlugins($this->pluginDir, $this->projectDir, $errors, $composerIO);
+        $pluginsFromFileSystem = $this->pluginFinder->findPlugins(
+            $this->pluginDir,
+            $this->staticPluginDir,
+            $this->projectDir,
+            $errors,
+            $composerIO
+        );
 
         $installedPlugins = $this->getPlugins(new Criteria(), $shopwareContext);
 
