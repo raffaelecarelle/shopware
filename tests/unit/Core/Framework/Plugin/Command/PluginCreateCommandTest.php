@@ -22,6 +22,7 @@ class PluginCreateCommandTest extends TestCase
 {
     /**
      * @param array<string, string> $arguments
+     * @param array<string, string> $options
      * @param array<string, string> $inputs
      * @param array<int, array<string, mixed>> $generators
      */
@@ -79,6 +80,7 @@ class PluginCreateCommandTest extends TestCase
                 'plugin-name' => 'TestPlugin',
                 'plugin-namespace' => 'Test',
                 '--test-option' => true,
+                '--static' => true,
             ],
             'inputs' => [],
             'generators' => [
